@@ -17,6 +17,8 @@ app.get('/',(req,res)=>{
 
 
 require('./app/routes/note.routes.js')(app);
+require('./app/routes/payroll.routes.js')(app);
+
 app.listen(3000,()=>{console.log("Running on port 3000.")});
 
 
