@@ -11,10 +11,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extend:true}))
 app.get('/',(req,res)=>{
-	res.json({'message':"Welcome To payRoll API, Mr Will,Mr.J and Mr.H"});
+	res.json({'message':"Weolcome To payRoll API, Mr Will,Mr.J and Mr.H"});
 });
 
-
+require('./app/routes/produto.routes.js')(app);
 require('./app/routes/nfe.routes.js')(app);
 require('./app/routes/note.routes.js')(app);
 require('./app/routes/payroll.routes.js')(app);
