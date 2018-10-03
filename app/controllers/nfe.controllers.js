@@ -2,26 +2,28 @@ const Nfe = require('../models/nfe.model.js');
 
 exports.create = (req,res)=>{
 	
-	//console.log(req.body);
+	console.log(req.body);
 	
 	if(!req.body){
 		
 		return res.status(400).send({message:"Note can not be empty."});
     }
     
-    let InfoIde =req.body.informacoes_gerais;
-    let InfoEmit=req.body.dados_emissor;
+    let InfoIde =req.body.ide;
+    let InfoEmit=req.body.dEmit;
 
-    console.log(InfoIde);
-	
+    
+        
 	const nfe = new Nfe
 	({
 	
     ide: InfoIde,
-    emit:InfoEmit
+    dEmit:InfoEmit
 		
-	});
-	
+    });
+    
+    console.log(nfe);
+    	
 	nfe.save()
 	.then(data=>{	res.send(data);		})
 	.catch(err=>{	res.status(500).send({	message: err.message	});
@@ -30,8 +32,10 @@ exports.create = (req,res)=>{
 };
 
 exports.findAll = (req,res)=>{
-	
+        
 	Nfe.find({},function(err,nfe){
+        
+        console.log(nfe);
              
 		if(err){
 			return res.status(404).send({message:"No Data"});
@@ -61,8 +65,10 @@ exports.update = (req,res)=>{
 	
      Nfe.findByIdAndUpdate(req.params.nfeId
         , {
+        
         title: req.body.title || "Untitled Note",
         content: req.body.content ||"Untitle Content"
+
     }, {new: true})
     .then(note => {
         if(!note) {
@@ -86,7 +92,7 @@ exports.update = (req,res)=>{
     });
 	
 };
-exports.delete = (req,rex)=>{
+exports.delete = (req,res)=>{
 	
     Nfe.findOneAndRemove(req.params.nfeId
         ,function(err){

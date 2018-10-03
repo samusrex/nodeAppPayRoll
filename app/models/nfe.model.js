@@ -58,8 +58,8 @@ var InfoEmitente = new mongoose.Schema(
 
 const NFESchema = mongoose.Schema({
    
-    informacoes_gerais: InfoGeral,
-    dados_emissor:InfoEmitente,
+    ide: InfoGeral,
+    dEmit:InfoEmitente,
    
 
 }, {
